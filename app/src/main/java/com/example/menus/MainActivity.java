@@ -121,19 +121,42 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        if (id == R.id.nav_settings) {
+            Intent settingIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingIntent);
 
         }
+       else if (id == R.id.nav_add) {
+            Snackbar.make(getWindow().getDecorView(), "Add study mate not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        }
+       else if (id == R.id.nav_delete) {
+            Snackbar.make(getWindow().getDecorView(), "Delete study mate not implemented yet.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        }
+       else if (id == R.id.nav_email) {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("*/*");
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Hey Study Partner");
+            if(emailIntent.resolveActivity(getPackageManager()) != null){
+                startActivity(emailIntent);
+            }
+
+        }
+       else if (id == R.id.nav_sms) {
+            Intent textIntent = new Intent(Intent.ACTION_VIEW);
+            textIntent.setData(Uri.parse("smsto:6512345678"));
+            textIntent.putExtra("sms_body", "Hey Study Partner");
+            if (textIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(textIntent);
+            }
+
+        }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
